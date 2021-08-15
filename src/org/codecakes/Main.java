@@ -6,7 +6,13 @@ public class Main {
 
     public static void main(String[] args) {
         ArrayList<Album> songLibrary = buildSongLibrary();
-        printSongLibrary(songLibrary);
+//        printSongLibrary(songLibrary);
+        Playlist playlist = new Playlist(songLibrary);
+
+        playlist.addSongByName("Beat it");
+        playlist.printPlaylist();
+
+
     }
 
     /***************  Test Data ***************************/
