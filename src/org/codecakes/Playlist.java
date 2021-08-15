@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class Playlist {
+
+
     private ArrayList<Album> albumArrayList;
     private LinkedList<Song> songLinkedList = new LinkedList<>();
 
@@ -50,7 +52,13 @@ public class Playlist {
         return false;
     }
 
+    public ArrayList<Album> getAlbumArrayList() {
+        return albumArrayList;
+    }
+
     public void printPlaylist() {
+
+        System.out.println("Playlist");
         ListIterator<Song> listIterator = songLinkedList.listIterator();
         while (listIterator.hasNext()) {
             System.out.println("Song: " + listIterator.next().getTitle());

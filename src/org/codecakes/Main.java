@@ -1,6 +1,7 @@
 package org.codecakes;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
@@ -10,7 +11,7 @@ public class Main {
         Playlist playlist = new Playlist(songLibrary);
 
         playlist.addSongByName("Beat it");
-        playlist.printPlaylist();
+        runPlaylist(playlist);
 
 
     }
@@ -44,5 +45,49 @@ public class Main {
         }
 
     }
+
+    public static void printMenu() {
+        System.out.println("Playlist options");
+        System.out.println("0: quit");
+        System.out.println("1: next song");
+        System.out.println("2: previous song");
+        System.out.println("3: print playlist");
+        System.out.println("4: print library of songs");
+        System.out.println("5: menu");
+    }
+
+    public static void runPlaylist(Playlist playlist) {
+        Scanner scanner = new Scanner(System.in);
+        boolean quit = false;
+        printMenu();
+
+        while (!quit) {
+            int menuSelection = scanner.nextInt();
+            scanner.nextLine();
+            switch(menuSelection) {
+                case 0:
+                    quit = true;
+                    break;
+                case 1:
+                    System.out.println("selected 1");
+                    break;
+                case 2:
+                    System.out.println("selected 2");
+                    break;
+                case 3:
+                    System.out.println("selected 3");
+                    break;
+                case 4:
+                    printSongLibrary(playlist.getAlbumArrayList());
+                    break;
+                case 5:
+                    printMenu();
+                    break;
+            }
+        }
+
+    }
+
+
 
 }
