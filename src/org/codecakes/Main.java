@@ -54,6 +54,7 @@ public class Main {
         System.out.println("3: print playlist");
         System.out.println("4: print library of songs");
         System.out.println("5: menu");
+        System.out.println("6: add song");
     }
 
     public static void runPlaylist(Playlist playlist) {
@@ -66,6 +67,7 @@ public class Main {
             scanner.nextLine();
             switch(menuSelection) {
                 case 0:
+                    System.out.println("Stopping playlist");
                     quit = true;
                     break;
                 case 1:
@@ -75,13 +77,20 @@ public class Main {
                     System.out.println("selected 2");
                     break;
                 case 3:
-                    System.out.println("selected 3");
+                    playlist.printPlaylist();
                     break;
                 case 4:
                     printSongLibrary(playlist.getAlbumArrayList());
                     break;
                 case 5:
                     printMenu();
+                    break;
+                case 6:
+                    System.out.println("enter name of song to add");
+                    String songToAdd = scanner.nextLine();
+
+                    System.out.println("Attempting to add " + songToAdd);
+                    playlist.addSongByName(songToAdd);
                     break;
             }
         }
