@@ -1,6 +1,7 @@
 package org.codecakes;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +12,9 @@ public class Main {
         Playlist playlist = new Playlist(songLibrary);
 
         playlist.addSongByName("Beat it");
+        playlist.addSongByName("Hells Bells");
+        playlist.addSongByName("Billie Jean");
+
         runPlaylist(playlist);
 
 
@@ -29,7 +33,7 @@ public class Main {
         backInBlack.addSong(new Song("Hells Bells", "5:10"));
         backInBlack.addSong(new Song("Back in Black", "4:15"));
         albumArrayList.add(backInBlack);
-        return  albumArrayList;
+        return albumArrayList;
     }
 
     public static void printSongLibrary(ArrayList<Album> songLibrary) {
@@ -60,21 +64,64 @@ public class Main {
     public static void runPlaylist(Playlist playlist) {
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
+        boolean goingForward = true;
+
+        ListIterator<Song> listIterator = playlist.getSongLinkedList().listIterator();
+
         printMenu();
+        System.out.println("Playing " + listIterator.next().getTitle());
+
 
         while (!quit) {
             int menuSelection = scanner.nextInt();
             scanner.nextLine();
-            switch(menuSelection) {
+            switch (menuSelection) {
                 case 0:
                     System.out.println("Stopping playlist");
                     quit = true;
                     break;
                 case 1:
-                    System.out.println("selected 1");
+                    // next song
+                    if (!goingForward) {
+                        if (listIterator.hasNext()) {
+                            listIterator.next();
+                            goingForward = true;
+                        }
+                    }
+
+                    if (listIterator.hasNext()) {
+                        System.out.println(listIterator.next().getTitle());
+//                        listIterator.next();
+//                        int index = listIterator.nextIndex();
+//                        if (index < playlist.getSongLinkedList().size()) {
+//                            System.out.println("Now playing " + playlist.getSongLinkedList().get(index).getTitle());
+//                        } else {
+//                            System.out.println("currently playing last song in playlist");
+//                        }
+
+                    } else {
+                        System.out.println("Currently playing last song in playlist");
+                    }
+
                     break;
                 case 2:
-                    System.out.println("selected 2");
+                    // previous song
+                    if (goingForward) {
+                        if (listIterator.hasPrevious()) {
+                            listIterator.previous();
+                            goingForward = false;
+                        }
+
+                    }
+                    if (listIterator.hasPrevious()) {
+
+                        System.out.println("moving to previous song");
+                        System.out.println("Now playing " + listIterator.previous().getTitle());
+
+                    } else {
+                        System.out.println("Currently playing first song in playlist");
+                    }
+
                     break;
                 case 3:
                     playlist.printPlaylist();
@@ -96,7 +143,6 @@ public class Main {
         }
 
     }
-
 
 
 }

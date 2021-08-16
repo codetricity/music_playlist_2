@@ -8,6 +8,11 @@ public class Playlist {
 
 
     private ArrayList<Album> albumArrayList;
+
+    public LinkedList<Song> getSongLinkedList() {
+        return songLinkedList;
+    }
+
     private LinkedList<Song> songLinkedList = new LinkedList<>();
 
     Playlist(ArrayList<Album> albumArrayList) {
