@@ -59,6 +59,8 @@ public class Main {
         System.out.println("4: print library of songs");
         System.out.println("5: menu");
         System.out.println("6: add song");
+        System.out.println("7: remove current song");
+
     }
 
     public static void runPlaylist(Playlist playlist) {
@@ -139,6 +141,8 @@ public class Main {
                     System.out.println("Attempting to add " + songToAdd);
                     playlist.addSongByName(songToAdd);
                     break;
+                case 7:
+                    listIterator.remove();
             }
         }
 
